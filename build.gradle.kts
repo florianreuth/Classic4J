@@ -1,8 +1,8 @@
-import de.florianmichael.baseproject.*
+import de.florianreuth.baseproject.*
 
 plugins {
     `java-library`
-    id("de.florianmichael.baseproject.BaseProject")
+    id("de.florianreuth.baseproject")
 }
 
 setupProject()
