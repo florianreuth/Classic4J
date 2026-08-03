@@ -8,10 +8,6 @@ plugins {
 setupProject()
 setupPublishing()
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     compileOnly("com.google.code.gson:gson:2.14.0")
 }

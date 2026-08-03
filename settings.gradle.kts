@@ -6,7 +6,7 @@ pluginManagement {
     }
 
     plugins {
-        id("de.florianreuth.baseproject") version "2.0.2"
+        id("de.florianreuth.baseproject") version "3.0.0"
     }
 }
 
