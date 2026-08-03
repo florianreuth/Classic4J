@@ -1,48 +1,48 @@
 # Classic4J
+
 Java implementation of the ClassiCube and BetaCraft protocol
 
-## Contact
-If you encounter any issues, please report them on the
-[issue tracker](https://github.com/florianreuth/Classic4J/issues).  
-If you just want to talk or need help with Classic4J feel free to join my
-[Discord](https://florianreuth.de/discord).
+## Use in Gradle
 
-## How to add this to your project
-### Gradle/Maven
+If you want to depend on Classic4J in your own project, use the Maven repository here:
 
-To use Classic4J with Gradle/Maven you can
-use [the Maven Central repository](https://mvnrepository.com/artifact/de.florianreuth/classic4j)
-or [my own repository](https://maven.florianreuth.de/#/releases/de/florianreuth/classic4j).  
-You can also find instructions how to implement it into your build script there.
+https://mvnrepository.com/artifact/de.florianreuth/classic4j
 
-### Jar File
+or
 
-If you just want the latest jar file you can download it
-from [my build server](https://build.florianreuth.de/job/Classic4J), [GitHub Actions](https://github.com/florianreuth/Classic4J/actions)
-or use the [releases tab](https://github.com/florianreuth/Classic4J/releases).
+https://maven.florianreuth.de/#/snapshots/de/florianreuth/classic4j (for snapshots)
 
-### Requirements
-This library requires you to have [Gson](https://mvnrepository.com/artifact/com.google.code.gson/gson/2.10.1) in your class path. <br>
-The **minimum** Java version is Java **17**.
+The repository page includes the latest coordinates and setup instructions.
 
-### Projects implementing Classic4J
-1. [ViaFabricPlus](https://github.com/florianreuth/ViaFabricPlus): Fabric mod to connect to EVERY Minecraft server version (Release, Beta, Alpha, Classic, Snapshots, Bedrock) with QoL fixes to the gameplay
+Jar builds can be downloaded from my build server: https://build.florianreuth.de/job/Classic4J/
 
-## Structure
-The two main classes of the library are **BetaCraftHandler** and **ClassiCubeHandler**, where you can get API requests for the respective platforms.
+## Requirements
 
-All API Requests are asynchronous and require a callback, the callback is called on the main thread, so you can safely modify the UI in the callback. 
-They are located in the **de.florianreuth.classic4j.request** package.
+- [Gson](https://mvnrepository.com/artifact/com.google.code.gson/gson/2.10.1)
+- Java **17**.
+
+## Terminology
+
+The two main classes of the library are **BetaCraftHandler** and **ClassiCubeHandler**, where you can get API requests
+for the respective platforms.
+
+All API Requests are asynchronous and require a callback, the callback is called on the main thread, so you can safely
+modify the UI in the callback. They are located in the **de.florianreuth.classic4j.request** package.
 
 All Models are located in the **de.florianreuth.classic4j.model** and **de.florianreuth.classic4j.api** package.
 
-The internal API is located in the **de.florianreuth.classic4j.util** package. 
+The internal API is located in the **de.florianreuth.classic4j.util** package.
 
-**You can either use the high-level frontend for API requests using the Handler classes or use the low-level backend using the Request classes.**
+**You can either use the high-level frontend for API requests using the Handler classes or use the low-level backend
+using the Request classes.**
 
-## Example usage
+## API Usage
+
 ### BetaCraft
-Classic4J allows you to dump the server list from https://betacraft.uk/ and generate an MP Pass from the BetaCraft launcher, keep in mind that for the MP Pass generator you need to implement the ExternalInterface from above
+
+Classic4J allows you to dump the server list from https://betacraft.uk/ and generate an MP Pass from the BetaCraft
+launcher, keep in mind that for the MP Pass generator you need to implement the ExternalInterface from above
+
 ```java
 BetaCraftHandler.requestServerList(serverList -> {
     System.out.println(serverList.servers().size());
@@ -57,9 +57,11 @@ BetaCrafthandler.authenticate(serverId -> {
 ```
 
 ### ClassiCube
+
 Classic4J allows you to authenticate with ClassiCube and retrieve the server list
+
 ```java
-final CCAccount account = new CCAccount("<username>", "<passowrd>");
+final CCAccount account = new CCAccount("<username>", "<password>");
 ClassiCubeHandler.requestAuthentication(account, null, new LoginProcessHandler() {
     @Override
     public void handleMfa(CCAccount account) {
@@ -78,9 +80,17 @@ ClassiCubeHandler.requestAuthentication(account, null, new LoginProcessHandler()
     }
 });
 ```
-Once you are authenticated, you can then dump the server list like BetaCraft, other API requests like searching are also implemented
+
+Once you are authenticated, you can then dump the server list like BetaCraft, other API requests like searching are also
+implemented
+
 ```java
 ClassiCubeHandler.requestServerList(account, serverList -> {
     System.out.println(serverList.servers().size());
 });
 ```
+
+## Contact
+
+- Issues: https://github.com/florianreuth/Classic4J/issues
+- Discord: https://florianreuth.de/discord
