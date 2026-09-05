@@ -26,15 +26,15 @@ public enum BCVersionCategory {
 
     @SerializedName("release")
     RELEASE,
-    @SerializedName("classic")
-    CLASSIC,
-    @SerializedName("indev")
-    INDEV,
-    @SerializedName("infdev")
-    INFDEV,
+    @SerializedName("beta")
+    BETA,
     @SerializedName("alpha")
     ALPHA,
-    @SerializedName("beta")
-    BETA
+    @SerializedName("infdev")
+    INFDEV,
+    @SerializedName("indev")
+    INDEV,
+    @SerializedName("classic")
+    CLASSIC
 
 }
