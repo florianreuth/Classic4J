@@ -42,7 +42,7 @@ public record BCServerInfo(String name,
 ) {
 
     public Optional<byte[]> icon() {
-        if (this._icon.isEmpty()) {
+        if (this._icon == null) {
             return Optional.empty();
         }
 
